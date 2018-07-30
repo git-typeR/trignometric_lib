@@ -4,7 +4,6 @@
 
 #define MAX_LEN 1000
 
-
 typedef struct {
     float* data;
     int   data_size;
@@ -27,4 +26,3 @@ extern void atan_curve_create(float *pdata, int size, float freq, float sample_f
 
 
 #endif //TRIGOMTRC_FUNC_CURVE_H
-

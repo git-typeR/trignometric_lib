@@ -1,3 +1,11 @@
+/**
+ * @brief 
+ * 
+ * @file data_control.c
+ * @author typeR
+ * @date 2018-07-29
+ */
+
 #include "data_control.h"
 #include <stdio.h>
 #include <string.h>
@@ -6,28 +14,27 @@
 
 /**********************************************************************//**
  * @brief write_data - 
- * @fn    void write_data(float* psave_data, int data_size)
+ * @fn    void write_data(char* file_name, float* psave_data, int data_size)
  * @param[in] psave_data
  * @param[in] data_size
  * @param[out] psave_data
  * @details
  * @return none
 **************************************************************************/
-void write_data(float* psave_data, int data_size)
+void write_data(char* file_name, float* psave_data, int data_size)
 {
 
     int   num;
 
     FILE* fpOutput = (FILE*)NULL;
 
-    if ((fpOutput = fopen(OUTPUT_FILENAME, "w")) == (FILE*) NULL){
+    if ((fpOutput = fopen(file_name, "w")) == (FILE*) NULL){
         fprintf(stderr, "Can't open OUTPUT_FILENAME\n");
 //        return (-1);
     }
        
 
     for (num = 0; num < data_size; num++) {
-//        printf("%f\n",psave_data[num]);
         fprintf(fpOutput, "%f,\n", psave_data[num]);
     }
     
@@ -40,23 +47,25 @@ void write_data(float* psave_data, int data_size)
 
 /**********************************************************************//**
  * @brief read_data - 
- * @fn    void read_data(float* pread_data, int data_size)
+ * @fn    void read_data(char* file_name, float* pread_data, int data_size)
  * @param[in] psave_data
  * @param[in] data_size
  * @param[out] psave_data
  * @details
  * @return none
 **************************************************************************/
-void read_data(float* pread_data, int data_size)
+void read_data(char* file_name, float* pread_data, int data_size)
 {
 
     int i = 0;
-    int num;
+#ifdef SUPPORT_DEBUG
+    int num = 0;
+#endif //SUPPORT_DEBUG
     float* input_data_buf = {0};
     
     FILE* fpInput = (FILE*)NULL;
 
-    if ((fpInput = fopen(INPUT_FILENAME, "r")) == (FILE*) NULL){
+    if ((fpInput = fopen(file_name, "r")) == (FILE*) NULL){
         fprintf(stderr, "Can't open OUTPUT_FILENAME\n");
 //        return (-1);
     }
@@ -66,11 +75,13 @@ void read_data(float* pread_data, int data_size)
     }
     
     memcpy(pread_data, input_data_buf, data_size * sizeof(pread_data));
-    
+
+#ifdef SUPPORT_DEBUG    
     for (num = 0; num < data_size; num++) {
         printf("%f\n",pread_data[num]);
     }
-    
+#endif //SUPPORT_DEBUG
+
     if (fpInput){
         fclose(fpInput);
     }

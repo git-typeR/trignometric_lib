@@ -34,6 +34,9 @@ else
 TARGET    = ./bin/$(shell basename `readlink -f .`)
 endif
 LIBDIR    = ./lib
+#MACRO     = -DSUPPORT_DEBUG
+MACRO     =
+
 #LIBTARGET = trignometric_data_lib.a
 ifneq ($(OS),Windows_NT)
 LIBTARGET = ./lib/$(shell basename `readlink -f .`).a
@@ -67,7 +70,7 @@ $(LIBTARGET): $(filter-out $(OBJDIR)/main.o,$(OBJECTS))
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
   #make dir objs if there isn't
 	-mkdir -p $(OBJDIR)
-	$(COMPILER) $(CFLAGS) $(INCLUDE) -o $@ -c $<
+	$(COMPILER) $(CFLAGS) $(MACRO) $(INCLUDE) -o $@ -c $<
 
 all: clean $(LIBTARGET) $(TARGET)
 

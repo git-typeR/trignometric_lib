@@ -1,0 +1,34 @@
+
+
+
+    funciton
+        - make trignometric curve data
+        - make noise data
+        - calculate data
+        - output made data as .csv
+
+     Application layer
+
+
+|----------------------------------
+|       data control       
+|----------------------------------
+|      calculation data     
+|----------------------------------
+|     noise     |    trignometric
+|----------------------------------
+|         GNU math lib
+|----------------------------------
+
+
+
+
+
+
+    
+
+
+
+
+
+

@@ -1,6 +1,5 @@
 #!/bin/sh
 
-#.sh�ȊO�̎��s�t�@�C�����𒊏o
 rm -f "outputdata.csv"
 cd ..
 make all
@@ -11,3 +10,5 @@ gnuplot -e "
   plot 'outputdata.csv' with line;
   pause -1
 "
+
+

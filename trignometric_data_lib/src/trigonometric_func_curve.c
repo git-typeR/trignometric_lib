@@ -40,10 +40,10 @@ void trignometric_data_set_create(TRIGNOMETRIC_T* trignometric)
 **************************************************************************/
 void sin_curve_create(TRIGNOMETRIC_T* trignometric)
 {
-    int num;
+    int index;
     float smple_period = 1/trignometric->smpl_freq;
-    for (num = 0; num < trignometric->data_size; num++) {
-        trignometric->data[num] = trignometric->amp * sin(2 * M_PI * trignometric->freq * smple_period * num);
+    for (index = 0; index < trignometric->data_size; index++) {
+        trignometric->data[index] = trignometric->amp * sin(2 * M_PI * trignometric->freq * smple_period * index);
 
     }
 }
@@ -58,11 +58,11 @@ void sin_curve_create(TRIGNOMETRIC_T* trignometric)
 **************************************************************************/
 void cos_curve_create(TRIGNOMETRIC_T* trignometric)
 {
-    int num;
+    int index;
     float smple_period = 1/trignometric->smpl_freq;
-    for (num = 0; num < trignometric->data_size; num++) {
-        trignometric->data[num] = trignometric->amp * cos(2 * M_PI * trignometric->freq * smple_period * num);
-//        printf("%f\n", pdata[num]);
+    for (index = 0; index < trignometric->data_size; index++) {
+        trignometric->data[index] = trignometric->amp * cos(2 * M_PI * trignometric->freq * smple_period * index);
+//        printf("%f\n", pdata[index]);
     }
 }
 
@@ -76,11 +76,11 @@ void cos_curve_create(TRIGNOMETRIC_T* trignometric)
 **************************************************************************/
 void tan_curve_create(TRIGNOMETRIC_T* trignometric)
 {
-    int num;
+    int index;
     float smple_period = 1/trignometric->smpl_freq;
-    for (num = 0; num < trignometric->data_size; num++) {
-        trignometric->data[num] = trignometric->amp * tan(2 * M_PI * trignometric->freq * smple_period * num);
-//        printf("%f\n", pdata[num]);
+    for (index = 0; index < trignometric->data_size; index++) {
+        trignometric->data[index] = trignometric->amp * tan(2 * M_PI * trignometric->freq * smple_period * index);
+//        printf("%f\n", pdata[index]);
     }
 }
 

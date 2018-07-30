@@ -23,6 +23,8 @@
 *                         MACRO
 **************************************************************************/
 #define MAX_FREQ_INDEX 10
+#define INPUT_FILENAME  "outputdata.csv"
+#define OUTPUT_FILENAME "outputdata.csv"
  
 /**********************************************************************//**
 *                         GLOBAL VARIABLE
@@ -43,9 +45,9 @@
 int main(void)
 {
     int i                   = 0;
-//    int freq_index          = 0;
     int noise_range         = 10000;    
     int noise_data[MAX_LEN] = {0};
+    char out_file_name[]    = OUTPUT_FILENAME; 
     float amplitude         = 1.0;
     float wave_freq         = 1.0;
     float sampling_freq     = 100.0;
@@ -68,10 +70,11 @@ int main(void)
     mixed_sin_curve_create(&sin_data, start_freq, end_freq, freq_width);
 
 
+#ifdef SUPPORT_DEBUG
     for (i = 0; i < 10; i++) {
         printf("%f\n", sin_data.data[i]);
     }
-    
+#endif //SUPPORT_DEBUG
 
     rand_noise_create(noise_data, sin_data.data_size, noise_range);
 
@@ -81,16 +84,33 @@ int main(void)
     
     add_data(sin_data.data, sin_data.data_size, fnoise_data, MAX_LEN);    
 
+
+#ifdef SUPPORT_DEBUG
     for (i = 0; i < 10; i++) {
 //        printf("%f\n", sum_wave_data[i]);
         printf("%f\n", sin_data.data[i]);
       }
+#endif //SUPPORT_DEBUG
 
-//    write_data(sum_wave_data, MAX_LEN);
-    write_data(sin_data.data, sin_data.data_size);
+    write_data(out_file_name, sin_data.data, sin_data.data_size);
 
     curve_clear(&sin_data);  
-    
+
+
+// fourier analysis
+
+// init ringbuf
+
+// read data
+
+// fourier()
+
+// write_data
+
+// data_clear
+
+
+
     return (0);
 }
 
